@@ -5,10 +5,17 @@ export default {
   debug: true,
   devtool: 'inline-source-map',
   noInfo: false,
+  // entry: [
+  //   'eventsource-polyfill', // necessary for hot reloading with IE
+  //   'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
+  //   path.resolve(__dirname, 'src/index')
+  // ],
+
   entry: [
-    'eventsource-polyfill', // necessary for hot reloading with IE
-    'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
-    path.resolve(__dirname, 'src/index')
+    // must be first entry to properly set public path
+    './src/webpack-public-path',
+    'webpack-hot-middleware/client?reload=true',
+    path.resolve(__dirname, 'src/index.js') // Defining path seems necessary for this to work consistently on Windows machines.
   ],
   target: 'web',
   output: {
