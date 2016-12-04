@@ -23,7 +23,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 
 app.get('*', function(req, res, next) {
-  console.log("request:", req.originalUrl)
+  console.log("request:", req.originalUrl);
   if ( req.originalUrl === '/' || req.originalUrl === 'index.html') {
     console.log('sending index.html');
     return res.sendFile(path.join( __dirname, '../src/index.html'));

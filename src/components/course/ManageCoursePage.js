@@ -6,6 +6,7 @@ import toastr from 'toastr';
 import * as courseActions  from '../../actions/courseActions';
 
 import CourseForm from './CourseForm';
+import {authorFormattedForDropdown} from '../../selectors/selectors';
 
 export class ManageCoursePage extends Component {
   constructor(props, context) {
@@ -104,16 +105,10 @@ function mapStateToProps(state, ownProps) {
     course = getCourseById(state.courses, courseId);
   }
 
-  const authorFormattedForDropdown = state.authors.map( author => {
-    return {
-      value: author.id,
-      text: author.firstName + ' ' + author.lastName
-    };
-  });
 
   return {
     course,
-    authors:authorFormattedForDropdown
+    authors:authorFormattedForDropdown(state.authors)
   };
 }
 
